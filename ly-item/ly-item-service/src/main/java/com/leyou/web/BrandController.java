@@ -2,6 +2,7 @@ package com.leyou.web;
 
 import com.leyou.common.pojo.PageResult;
 import com.leyou.item.pojo.Brand;
+import com.leyou.item.vo.BrandVo;
 import com.leyou.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,5 +42,16 @@ public class BrandController {
     public ResponseEntity<Void> saveBrand(Brand brand, @RequestParam("cids") List<Long> cids) {
         this.brandService.saveBrand(brand, cids);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * 修改品牌
+     * @param brand
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<Void> updateBrand(BrandVo brandVo) throws Exception {
+        this.brandService.updateBrand(brandVo);
+        return ResponseEntity.ok().build();
     }
 }

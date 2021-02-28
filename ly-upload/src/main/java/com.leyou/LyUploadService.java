@@ -2,16 +2,16 @@ package com.leyou;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author Panjr
- * @create 2020-02-28 9:54
+ * @create 2020-03-05 10:03
  */
 @SpringBootApplication
-@EnableEurekaServer
-public class LyRegistry {
+@EnableDiscoveryClient
+public class LyUploadService {
     public static void main(String[] args) {
-        SpringApplication.run(LyRegistry.class, args);
+        SpringApplication.run(LyUploadService.class, args);
     }
 }

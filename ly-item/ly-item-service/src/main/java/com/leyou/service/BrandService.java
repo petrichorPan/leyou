@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.leyou.common.pojo.PageResult;
 import com.leyou.item.pojo.Brand;
+import com.leyou.item.vo.BrandVo;
 import com.leyou.mapper.BrandMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class BrandService {
         // 返回结果
         return new PageResult<>(pageInfo.getTotal(), pageInfo);
     }
+
     @Transactional
     public void saveBrand(Brand brand, List<Long> cids) {
         // 新增品牌信息
@@ -52,4 +54,19 @@ public class BrandService {
             this.brandMapper.insertCategoryBrand(cid, brand.getId());
         }
     }
+
+    public void updateBrand(BrandVo vo) throws Exception {
+        Brand brand = new Brand();
+        brand.setId(vo.getId());
+        brand.setName(vo.getName());
+        brand.setImage(vo.getImage());
+        brand.setLetter(vo.getLetter());
+        //更新
+        int resultCount = brandMapper.updateByPrimaryKey(brand);
+        if (resultCount == 0) {
+            throw new Exception("updateBrand error");
+        }
+
+    }
+
 }
